@@ -1,0 +1,13 @@
+services:
+  debug:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    ports:
+      - "2345:2345"
+      - "8080:8080"
+    command: "--listen=:2345 --headless=true --api-version=2 --log=true --accept-multiclient exec /app"
+    security_opt:
+      - "apparmor:unconfined"
+    cap_add:
+      - "SYS_PTRACE"
